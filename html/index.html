@@ -12,7 +12,7 @@
 
     body {
         font-family: 'Overpass', sans-serif;
-        font-weight: normal;
+        font-weight: normal ;
         font-size: 100%;
         color: #1b262c;
         margin: 0;
@@ -173,45 +173,6 @@
 <footer>
 
 </footer>
-<script>
-    const loginForm = document.getElementById('login-form');
-    const dniInput = document.getElementById('dni');
-    const errorMessage = document.getElementById('error-message');
-
-    loginForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const dni = dniInput.value.trim();
-
-        // Validate DNI format (basic check)
-        if (dni.length !== 8 || !/^[0-9]{8}$/.test(dni)) {
-            errorMessage.textContent = 'DNI inválido. Debe tener 8 dígitos.';
-            return;
-        }
-
-        // Send DNI to server for validation (using AJAX or Fetch API)
-        fetch('/validate-dni', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ dni: dni })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.valid) {
-                    // DNI is valid, redirect to voting page
-                    window.location.href = '/voting-page';
-                } else {
-                    errorMessage.textContent = data.error;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                errorMessage.textContent = 'Error al validar DNI. Inténtelo de nuevo.';
-            });
-    });
-</script>
 </body>
 
 </html>
