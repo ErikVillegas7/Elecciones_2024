@@ -108,6 +108,7 @@
     }
 
     button {
+        padding-left: 30px;
         background-color: #092163;
         color: white;
         padding: 10px 20px;
